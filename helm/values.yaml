@@ -1,0 +1,17 @@
+image: sknnr/palworld-dedicated-server
+imageTag: latest
+# serviceType should be LoadBalancer or NodePort
+serviceType: LoadBalancer
+resources:
+  requests:
+    memory: 12G
+    cpu: 4.0
+volumes:
+  dataPVC:
+    size: 50Gi
+  storageClassName: ""
+env:
+  serverName: "Palworld Containerized Server"
+  serverPassword: "picksomethinggreat"
+  gamePort: 8211
+  serverSlots: 32
