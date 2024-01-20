@@ -22,8 +22,7 @@ RUN mkdir "$PALWORLD_PATH" \
     && mkdir /home/steam/steamcmd \
     && mkdir -p /home/steam/.steam/sdk64 \
     && curl -sqL https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz | tar zxvf - -C /home/steam/steamcmd \
-    && chmod +x /home/steam/steamcmd/steamcmd.sh \
-    && cp /home/steam/steamcmd/linux64/steamclient.so /home/steam/.steam/sdk64/steamclient.so 
+    && chmod +x /home/steam/steamcmd/steamcmd.sh 
 
 WORKDIR /home/steam
 
