@@ -11,7 +11,7 @@ RUN groupadd -g 1000 steam \
     && apt-get install -y \
         ca-certificates \
         curl \
-        lib32gcc-s1s
+        lib32gcc-s1
 
 USER steam
 
