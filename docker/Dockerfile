@@ -18,7 +18,7 @@ USER steam
 COPY entrypoint.sh /home/steam/entrypoint.sh
 
 RUN mkdir "$PALWORLD_PATH" \
-    && mkdir "$PALWORLD_PATH"/Pal/Saved \
+    && mkdir -p "$PALWORLD_PATH"/Pal/Saved \
     && mkdir /home/steam/steamcmd \
     && mkdir -p /home/steam/.steam/sdk64 \
     && curl -sqL https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz | tar zxvf - -C /home/steam/steamcmd \
