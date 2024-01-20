@@ -25,6 +25,9 @@ fi
 echo "INFO: Updating Palworld Dedicated Server"
 /home/steam/steamcmd/steamcmd.sh +force_install_dir "$PALWORLD_PATH" +login anonymous +app_update 2394010 validate +quit
 
+# Palworld looks for steamclient.so here, so lets make sure it exists here
+cp /home/steam/steamcmd/linux64/steamclient.so /home/steam/.steam/sdk64/steamclient.so 
+
 # Copy example server config if not already present
 if ! [ -f "${PALWORLD_CONFIG}" ]; then
     echo "INFO: Palworld server config not present, copying example"
