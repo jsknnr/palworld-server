@@ -31,6 +31,7 @@ cp /home/steam/steamcmd/linux64/steamclient.so /home/steam/.steam/sdk64/steamcli
 # Copy example server config if not already present
 if ! [ -f "${PALWORLD_CONFIG}" ]; then
     echo "INFO: Palworld server config not present, copying example"
+    touch ${PALWORLD_CONFIG}
     cat /home/steam/palworld/DefaultPalWorldSettings.ini > ${PALWORLD_CONFIG}
 # Config may be present but empty, check for that too
 elif [ $(ls -l ${PALWORLD_CONFIG} | awk '{print $5}') -eq 0 ]; then
