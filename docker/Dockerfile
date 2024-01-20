@@ -11,14 +11,14 @@ RUN groupadd -g 1000 steam \
     && apt-get install -y \
         ca-certificates \
         curl \
-        lib32gcc-s1
+        lib32gcc-s1s
 
 USER steam
 
 COPY entrypoint.sh /home/steam/entrypoint.sh
 
 RUN mkdir "$PALWORLD_PATH" \
-    && mkdir -p "$PALWORLD_PATH"/Pal/Saved/Config/LinuxServer/ \
+    && mkdir -p "$PALWORLD_PATH"/Pal/Saved/Config/LinuxServer \
     && mkdir /home/steam/steamcmd \
     && mkdir -p /home/steam/.steam/sdk64 \
     && curl -sqL https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz | tar zxvf - -C /home/steam/steamcmd \
