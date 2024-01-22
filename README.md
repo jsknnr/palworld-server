@@ -1,4 +1,6 @@
 # palworld-server
+[![Static Badge](https://img.shields.io/badge/DockerHub-blue)]((https://hub.docker.com/r/sknnr/palworld-dedicated-server)) ![Docker Pulls](https://img.shields.io/docker/pulls/sknnr/palworld-dedicated-server) [![Static Badge](https://img.shields.io/badge/GitHub-green)](https://github.com/jsknnr/palworld-server) ![GitHub Repo stars](https://img.shields.io/github/stars/jsknnr/palworld-server)
+
 Containerized Palworld dedicated server
 
 **Disclaimer:** This is not an official image. No support, implied or otherwise is offered to any end user by the author or anyone else. Feel free to do what you please with the contents of this repo.
@@ -27,7 +29,7 @@ The processes within the container do **NOT** run as root. Everything runs as th
 To run the container in Docker, run the following command:
 
 ```bash
-docker volume create palworld-persistent-data
+docker volume create palworld-persistent-data # Only run this 1 time
 docker run \
   --detach \
   --name palworld-server \
@@ -45,13 +47,13 @@ docker run \
 To use Docker Compose, either clone this repo or copy the `compose.yaml` and `default.env` files out of the `container` directory to your local machine. You can leave the `compose.yaml` file uncahnged. Edit the `default.env` file to change the environment variables to the values you desire and then save the changes. Once you have made your changes, from the same directory that contains both the env file and the compose file, simply run:
 
 ```bash
-docker compose up -d
+docker compose up -d -f compose.yaml
 ```
 
 To bring the container down:
 
 ```bash
-docker compose down
+docker compose down -f compose.yaml
 ```
 
 ### Podman
@@ -59,7 +61,7 @@ docker compose down
 To run the container in Podman, run the following command:
 
 ```bash
-podman volume create palworld-persistent-data
+podman volume create palworld-persistent-data # Only run this 1 time
 podman run \
   --detach \
   --name palworld-server \
