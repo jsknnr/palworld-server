@@ -4,6 +4,12 @@
 Containerized Palworld dedicated server
 
 **Disclaimer:** This is not an official image. No support, implied or otherwise is offered to any end user by the author or anyone else. Feel free to do what you please with the contents of this repo.
+
+## Notice - Please Read
+There is currently a bug where if you try to direct connect to your password protected server the game will not prompt you for the password and you will fail to join. If you can find your server in the server browser it will work just fine. However, another problem is that you may not be able to find your server in the server browser due to the shear amount of servers. This container image is built so that your server *should* show up in the list, but I have had some issues finding them.
+
+A workaround for directly connecting to password protected servers has been shared here: https://steamcommunity.com/app/1623730/discussions/0/4132683013931609911/
+
 ## Usage
 
 The processes within the container do **NOT** run as root. Everything runs as the user steam (gid:1000/uid:1000). If you exec into the container, you will drop into `/home/steam` as the steam user. Palworld will be installed to `/home/steam/palworld`. Any persistent volumes should be mounted to `/home/steam/palworld/Pal/Saved`.
