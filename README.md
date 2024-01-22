@@ -40,6 +40,20 @@ docker run \
   sknnr/palworld-dedicated-server:latest
 ```
 
+### Docker Compose
+
+To use Docker Compose, either clone this repo or copy the `compose.yaml` and `default.env` files out of the `container` directory to your local machine. You can leave the `compose.yaml` file uncahnged. Edit the `default.env` file to change the environment variables to the values you desire and then save the changes. Once you have made your changes, from the same directory that contains both the env file and the compose file, simply run:
+
+```bash
+docker compose up -d
+```
+
+To bring the container down:
+
+```bash
+docker compose down
+```
+
 ### Podman
 
 To run the container in Podman, run the following command:

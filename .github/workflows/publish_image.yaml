@@ -20,6 +20,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: "{{defaultContext}}:docker"
+          context: "{{defaultContext}}:container"
+          file: "{{context}}/containerfile"
           push: true
           tags: "${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest"

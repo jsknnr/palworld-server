@@ -47,4 +47,4 @@ sed -i "s/PublicPort=\"[^\"]*\"/PublicPort=\"${GAME_PORT}\"/" $PALWORLD_CONFIG
 sed -i "s/ServerPlayerMaxNum=\"[^\"]*\"/ServerPlayerMaxNum=\"${SERVER_SLOTS}\"/" $PALWORLD_CONFIG
 
 # Launch Palworld
-${PALWORLD_PATH}/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS
+${PALWORLD_PATH}/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS -EpicApp=Palserver
