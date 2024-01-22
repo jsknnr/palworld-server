@@ -1,0 +1,12 @@
+services:
+  palworld:
+    image: sknnr/palworld-dedicated-server:latest
+    ports:
+      - "8211:8211/udp"
+    env_file:
+      - default.env
+    volumes:
+      - palworld-persistent-data:/home/steam/palworld/Pal/Saved
+
+volumes:
+  palworld-persistent-data:
