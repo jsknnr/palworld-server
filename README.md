@@ -62,6 +62,29 @@ To bring the container down:
 docker compose down -f compose.yaml
 ```
 
+compose.yaml :
+```yaml
+services:
+  palworld:
+    image: sknnr/palworld-dedicated-server:latest
+    ports:
+      - "8211:8211/udp"
+    env_file:
+      - default.env
+    volumes:
+      - palworld-persistent-data:/home/steam/palworld/Pal/Saved
+
+volumes:
+  palworld-persistent-data:
+```
+default.evn :
+```bash
+SERVER_NAME="Palworld Containerized"
+SERVER_PASSWORD="ChangeMePlease"
+GAME_PORT="8211"
+SERVER_SLOTS="32"
+```
+
 ### Podman
 
 To run the container in Podman, run the following command:
@@ -83,3 +106,13 @@ podman run \
 ### Kubernetes
 
 I've built a Helm chart and have included it in the `helm` directory within this repo. Modify the `values.yaml` file to your liking and install the chart into your cluster. Be sure to create and specify a namespace as I did not include a template for provisioning a namespace.
+
+## Troubleshooting
+
+### Connectivity
+
+If you are having issues connecting to the server once the container is deployed, I promise the issue is not with this image. You need to make sure that the port 8211/udp (or whichever ones you decide to use) are open on your router as well as the container host where this container image is running. You will also have to port-forward the game-port and query-port from your router to the private IP address of the container host where this image is running. After this has been done correctly and you are still experiencing issues, your internet service provider (ISP) may be blocking the ports and you should contact them to troubleshoot.
+
+### Storage
+
+I recommend having Docker or Podman manage the volume that gets mounted into the container. However, if you absolutely must bind mount a directory into the container you need to make sure that on your container host the directory you are bind mounting is owned by 10000:10000 by default (`chown -R 10000:10000 /path/to/directory`). If the ownership of the directory is not correct the container will not start as the server will be unable to persist the savegame.
