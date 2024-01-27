@@ -1,11 +1,14 @@
 FROM debian:12
 
+ARG CONTAINER_GID=10000
+ARG CONTAINER_UID=10000
+
 ENV DEBIAN_FRONTEND "noninteractive"
 ENV PALWORLD_PATH "/home/steam/palworld"
 ENV PALWORLD_CONFIG "${PALWORLD_PATH}/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
 
-RUN groupadd -g 1000 steam \
-    && useradd -g 1000 -u 1000 -m steam \
+RUN groupadd -g $CONTAINER_GID steam \
+    && useradd -g $CONTAINER_GID -u $CONTAINER_UID -m steam \
     && dpkg --add-architecture i386 \
     && apt-get update \
     && apt-get install -y \

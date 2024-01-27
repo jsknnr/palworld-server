@@ -28,6 +28,18 @@ echo "INFO: Updating Palworld Dedicated Server"
 # Palworld looks for steamclient.so here, so lets make sure it exists here
 cp /home/steam/steamcmd/linux64/steamclient.so /home/steam/.steam/sdk64/steamclient.so 
 
+# Check for proper save permissions
+if ! touch "${PALWORLD_PATH}/Pal/Saved/test"; then
+    echo ""
+    echo "ERROR: The ownership of /home/steam/palworld/Pal/Saved is not correct and the server will not be able to save..."
+    echo "the directory that you are mounting into the container needs to be owned by 10000:10000"
+    echo "from your container host attempt the following command 'chown -R 10000:10000 /your/palworld/directory'"
+    echo ""
+    exit 1
+fi
+
+rm "${PALWORLD_PATH}/Pal/Saved/test"
+
 # Copy example server config if not already present
 if ! [ -f "${PALWORLD_CONFIG}" ]; then
     echo "INFO: Palworld server config not present, copying example"
